@@ -1,142 +1,98 @@
-# 🚀 AI SaaS Starter — Ship Your AI Product in Days, Not Months
+# AI SaaS Starter — $49
 
-**The complete, production-ready boilerplate for building AI-powered SaaS applications.**
+> Ship your AI SaaS in days, not months. Production-ready Next.js 15 template with auth, billing, multi-model chat, and admin dashboard.
 
-Built with Next.js 15, React 19, TypeScript, Tailwind CSS 4, Drizzle ORM, Stripe, and the Vercel AI SDK.
+## What's Included
 
-> **This is a premium template.** [Get it on Gumroad for $49 →](https://kszongic.gumroad.com/l/ai-saas-starter)
+### 🤖 Multi-Model AI Chat
+- Streaming chat with **GPT-4o, Claude Sonnet, Gemini Flash**
+- Model switching per conversation
+- Beautiful dark-mode UI with message history
+- Vercel AI SDK integration
 
----
+### 💳 Stripe Billing (Complete)
+- **Free / Pro ($19/mo) / Enterprise ($99/mo)** tiers
+- Checkout sessions, customer portal, usage limits
+- Webhook handlers for all subscription lifecycle events
+- Daily message limits enforced per plan
 
-## 🎯 What You Get
+### 🔐 Authentication & Authorization
+- **Next-Auth v5** with GitHub + Google providers
+- Role-based access control (user / admin)
+- Protected routes via middleware
+- Database sessions with Drizzle adapter
 
-### Auth & Users
-- ✅ Next-Auth v5 with GitHub, Google, Email magic links
-- ✅ Role-based access (user, pro, admin)
-- ✅ User settings & profile pages
-- ✅ Session management
+### 📊 Admin Dashboard
+- Revenue metrics (MRR, active users, messages)
+- Usage trends chart integration point
+- Recent activity feed
+- User management ready
 
-### AI Features
-- ✅ Streaming chat interface (Vercel AI SDK)
-- ✅ Multi-model support (GPT-4, Claude, Gemini — swap with one line)
-- ✅ Conversation history & persistence
-- ✅ Token usage tracking per user
-- ✅ Rate limiting by plan tier
+### 🗄️ Database
+- **Drizzle ORM** + PostgreSQL
+- Complete schema: users, accounts, sessions, subscriptions, messages, usage tracking
+- Migration-ready with `drizzle-kit`
 
-### Billing & Subscriptions
-- ✅ Stripe Checkout integration
-- ✅ Free / Pro / Enterprise plans
-- ✅ Usage-based billing support
-- ✅ Webhook handlers for all Stripe events
-- ✅ Customer portal for self-service
+### 🎨 UI & DX
+- **Next.js 15** App Router + React 19
+- **Tailwind CSS 4** with custom dark theme
+- TypeScript strict mode
+- Landing page, pricing page, chat UI, dashboard
+- Toast notifications, loading states
+- Mobile responsive
 
-### Dashboard
-- ✅ Admin dashboard with user analytics
-- ✅ Revenue metrics & charts
-- ✅ User management (ban, upgrade, impersonate)
-- ✅ AI usage monitoring
-
-### Infrastructure
-- ✅ Drizzle ORM with PostgreSQL (Neon / Supabase / any PG)
-- ✅ Edge-ready API routes
-- ✅ Rate limiting middleware
-- ✅ Error tracking setup (Sentry-ready)
-- ✅ SEO optimized with metadata API
-- ✅ One-click deploy to Vercel
-
-## 📁 Project Structure
-
-```
-├── app/
-│   ├── (auth)/           # Login, register, forgot password
-│   ├── (dashboard)/      # Protected dashboard routes
-│   │   ├── chat/         # AI chat interface
-│   │   ├── settings/     # User settings & billing
-│   │   └── admin/        # Admin panel (role-gated)
-│   ├── api/
-│   │   ├── ai/           # AI chat endpoints (streaming)
-│   │   ├── webhooks/     # Stripe webhook handlers
-│   │   └── users/        # User CRUD
-│   └── (marketing)/      # Landing page, pricing, docs
-├── components/
-│   ├── ui/               # Reusable UI components
-│   ├── chat/             # Chat interface components
-│   └── dashboard/        # Dashboard widgets
-├── lib/
-│   ├── ai.ts             # AI provider config
-│   ├── auth.ts           # Auth config
-│   ├── db/               # Drizzle schema & queries
-│   ├── stripe.ts         # Stripe helpers
-│   └── utils.ts          # Shared utilities
-└── drizzle/              # Migrations
-```
-
-## 🏁 Quick Start
+## Quick Start
 
 ```bash
-# 1. Clone
 git clone https://github.com/kszongic/ai-saas-starter
 cd ai-saas-starter
-
-# 2. Install
-npm install
-
-# 3. Set up env
 cp .env.example .env.local
-# Fill in your keys (see below)
-
-# 4. Push database schema
+npm install
 npm run db:push
-
-# 5. Run
 npm run dev
 ```
 
-### Required Environment Variables
+## File Structure
 
-```env
-# Database (Neon, Supabase, or any PostgreSQL)
-DATABASE_URL=postgresql://...
-
-# Auth
-AUTH_SECRET=your-secret-here
-AUTH_GITHUB_ID=...
-AUTH_GITHUB_SECRET=...
-AUTH_GOOGLE_ID=...
-AUTH_GOOGLE_SECRET=...
-
-# AI
-OPENAI_API_KEY=sk-...
-
-# Stripe
-STRIPE_SECRET_KEY=sk_live_...
-STRIPE_WEBHOOK_SECRET=whsec_...
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
-
-# App
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+app/
+├── page.tsx              # Landing page with hero + features
+├── layout.tsx            # Root layout with providers
+├── globals.css           # Tailwind + theme
+├── chat/page.tsx         # Multi-model AI chat UI
+├── pricing/page.tsx      # 3-tier pricing page
+├── dashboard/page.tsx    # Admin dashboard with metrics
+├── api/
+│   ├── ai/chat/route.ts  # Streaming AI chat endpoint
+│   └── webhooks/stripe/route.ts  # Stripe webhook handler
+lib/
+├── ai.ts                 # AI provider config
+├── auth.ts               # Next-Auth v5 setup
+├── stripe.ts             # Stripe client + helpers
+├── db/
+│   ├── index.ts          # Drizzle client
+│   └── schema.ts         # Full database schema
+middleware.ts             # Auth + RBAC middleware
+tailwind.config.ts        # Theme configuration
 ```
 
-## 💰 Pricing Plans (Pre-configured)
+## Tech Stack
 
-| Feature | Free | Pro ($19/mo) | Enterprise ($99/mo) |
-|---------|------|-------------|-------------------|
-| AI Messages | 20/day | 500/day | Unlimited |
-| Models | GPT-3.5 | GPT-4 + Claude | All models |
-| History | 7 days | Unlimited | Unlimited |
-| API Access | ❌ | ✅ | ✅ |
-| Priority Support | ❌ | ❌ | ✅ |
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript (strict) |
+| Styling | Tailwind CSS 4 |
+| Auth | Next-Auth v5 |
+| Database | PostgreSQL + Drizzle ORM |
+| AI | Vercel AI SDK (OpenAI, Anthropic, Google) |
+| Payments | Stripe (Checkout, Webhooks, Portal) |
+| Deploy | Vercel / any Node.js host |
 
-## 🚀 Deploy
+## License
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kszongic/ai-saas-starter)
-
-## 📄 License
-
-This is a commercial template. You get a license to use it in unlimited personal and commercial projects.
-
-**[Get it on Gumroad for $49 →](https://kszongic.gumroad.com/l/ai-saas-starter)**
+Commercial license — use in unlimited projects after purchase.
 
 ---
 
-Built by [kszongic](https://github.com/kszongic) • Questions? [Open an issue](https://github.com/kszongic/ai-saas-starter/issues)
+**[Get it on Gumroad for $49 →](https://kszongic.gumroad.com/l/ai-saas-starter)**
